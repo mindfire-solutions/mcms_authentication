@@ -1,0 +1,99 @@
+<!--
+
+        @File Name                            :first_user.html.erb
+
+	@Company Name                         :Mindfire Solutions Pvt. Ltd.
+
+	@Creator Name                         :Indranil Mukherjee
+
+	@Date Created                         :2012-06-04
+
+        @Date Modified                        :2012-07-13
+
+        @Last Modification Details            :Making it as mcms project standard
+
+        @Purpose                              :All users listed here
+
+-->
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "authentication_global",:media => "all" %>
+<% end %>
+
+<div id="main-content" class="new-user-form" style="margin-top: 0px;padding-top: 21px; ">
+
+  <!--
+
+    The following form is responsible
+    for creating a first user with email and password.
+
+  -->
+  <h1>Create Super User</h1><br/>
+
+  <%= form_for(:user, :url => "/mcms/users_first") do |f| %>
+
+    <div class="error">
+      <% if flash[:notice] %>
+        <div> Following error occured while creating the super user</div>
+        <br/>
+        <ul>
+          <% flash[:notice].each do |e| %>
+            <li><%= e %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div><br/>
+
+    <div class="field">
+
+      <%= f.label :email %><br />
+
+      <%= f.email_field :email %></div>
+
+    <div class="field">
+
+      <%= f.label :first_name %><br />
+
+      <%= f.text_field :first_name %>
+    </div>
+
+
+
+    <div class="field">
+
+      <%= f.label :last_name %><br />
+
+      <%= f.text_field :last_name %>
+    </div>
+
+
+    <div class="field">
+
+      <%= f.label :password %><br />
+
+      <%= f.password_field :password %></div>
+
+    <div class="field"><%= f.label :password_confirmation %><br />
+
+      <%= f.password_field :password_confirmation %></div>
+
+
+    <div class="form-actions" >
+
+      <div class="form-actions-left" >
+
+        <%= f.submit "Save",:class => "button"  %>
+
+        <%= link_to "Cancel",mcms_users_path,:id => "cancel",:class => "close-dialog button" %>
+
+      </div>
+
+    </div>
+
+
+  <% end %>
+
+
+</div>
+
+<!-- End of First User creation -->

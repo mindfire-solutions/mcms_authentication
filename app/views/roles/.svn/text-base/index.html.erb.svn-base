@@ -1,0 +1,102 @@
+<!--
+
+        @File Name                            :index.html.erb
+
+	@Company Name                         :Mindfire Solutions Pvt. Ltd.
+
+	@Creator Name                         :Indranil Mukherjee
+
+	@Date Created                         :2012-06-04
+
+        @Date Modified                        :2012-06-14
+
+        @Last Modification Details            :Making it as mcms project standard
+
+        @Purpose                              :Listing all roles
+
+-->
+
+
+<% content_for :head do %>
+
+  <%= javascript_include_tag "application","authentication_global" %>
+  <%= stylesheet_link_tag "authentication_global",:media => "all" %>
+
+<% end %>
+
+  <div class="news">
+
+
+    <% @roles.each do |role| %>
+      <div class="alert "><div class="body"><span class="mini-icon mini-icon-issue-comment"></span>
+
+          <div class="title" style="float: left;">
+            <a href="#"><%=  role.title   %></a>
+            <span> was added </span> about
+
+            <time  class="js-relative-date"><%=  distance_of_time_in_words(role.created_at,Time.now) %> ago</time>
+          </div>
+
+          <!-- Super user should not be deleted -->
+          <div style="float: right;">
+            
+              <% unless role.title == "superuser" %>
+                <%=  link_to  image_tag("/assets/icons/delete.png" ,:alt=> "user_delete" ,:height => "16 px" ,:width => "16 px;"), role ,:confirm => "Are you sure u want to remove #{role.title} ?", :method => :delete %>
+
+                <%= link_to  image_tag("/assets/icons/application_edit.png" ,:alt=> "User_edit" ,:height => "16 px" ,:width => "16 px;"), edit_role_path(role) %>
+              <% end %>
+           
+          </div>
+
+          <div style="clear: both"></div>
+
+        </div></div>
+    <% end %>
+
+
+  </div>
+
+
+
+
+  <div id="your-repos" class="repos">
+    <div class="top-bar">
+      <h2>Quick tasks </h2>
+      <a class="button new-repo" href="<%= new_role_path %>">Add new role</a>
+    </div>
+
+    <ul class="repo-list" >
+
+      <li class="public source">
+        <a href="/mcms/roles/">
+          <span class="mini-icon "></span>
+          <span class="owner">Roles</span><span class="repo"></span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+
+      <li class="public source">
+        <a href="/mcms/users/new">
+          <span class="mini-icon "></span>
+          <span class="owner">New User</span>    <span class="repo"></span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+
+      <li class="public source">
+        <a href="/mcms/role/new">
+          <span class="mini-icon "></span>
+          <span class="owner">Add new role</span><span class="repo"></span>
+          <span class="arrow"></span>
+        </a>
+      </li>
+
+    </ul>
+    <div class="bottom-bar">
+    </div>
+  </div>
+
+
+
+
+<!-- End of user listing -->

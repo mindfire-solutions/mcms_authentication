@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate
+END
+20120608104637_create_roles.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate/20120608104637_create_roles.rb
+END
+20120625114340_create_existing_models.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate/20120625114340_create_existing_models.rb
+END
+20120711064709_add_username_to_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate/20120711064709_add_username_to_users.rb
+END
+20120605112804_devise_create_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate/20120605112804_devise_create_users.rb
+END
+20120612050932_create_plugins.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate/20120612050932_create_plugins.rb
+END
+20120608140424_create_roles_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/SVNHOME/!svn/ver/21937/mcms/trunk/mcms_authentication/db/migrate/20120608140424_create_roles_users.rb
+END

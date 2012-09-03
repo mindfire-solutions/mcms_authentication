@@ -1,0 +1,245 @@
+<!--
+
+        @File Name                            :_form.html.erb
+
+	@Company Name                         :Mindfire Solutions Pvt. Ltd.
+
+	@Creator Name                         :Indranil Mukherjee
+
+	@Date Created                         :2012-06-04
+
+        @Date Modified                        :2012-06-14
+
+        @Last Modification Details            :Making it as mcms project standard
+
+        @Purpose                              :Role form
+
+-->
+
+<!-- This line of code is responsible for javascript to be loaded for this particular page -->
+<% content_for :head do %>
+
+  <%= javascript_include_tag "application","authentication_global" %>
+  <%= stylesheet_link_tag "authentication_global",:media => "all" %>
+  <%= render(:partial => "form.js",:locals => {:all_plugins => all_plugins}) %>
+
+<% end %>
+
+
+<!-- form for creating a new role -->
+<%= form_for(@role) do |f| %>
+
+  <!-- If any error occured while creating a role (validation or any other) -->
+
+  <% if @role.errors.any? %>
+
+    <div id="error-explanation">
+
+      <h2><%= pluralize(@role.errors.count, "error") %> prohibited
+        this role from being saved:</h2>
+
+      <ul>
+
+        <% @role.errors.full_messages.each do |msg| %>
+
+          <li><%= msg %></li>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+
+  <% end %>
+
+  <!-- error messages are displayed -->
+
+  <div class="field session-username clearfix">
+
+    <%= f.label :title %><br />
+
+    <%= f.text_field :title %></div>
+
+  <div id="records" style="width:100%;margin-top: 30px;">
+
+    <% i = 1 %>
+
+    <% all_plugins.each do |p| %>
+   
+    <div style="margin-top: 10px;border-bottom: 1px solid #ccc; padding-bottom: 10px;" > <!-- Showing all plugins alternative css applied -->
+
+      <div style="float: left">
+
+          <div>
+
+            <strong> <%= Models.get_module_name(p).classify %></strong> <!-- module -->
+
+          </div>
+
+        </div>
+
+        <!-- Access control user input of above module -->
+
+        <div  style="float: right;">
+
+          <% r = Plugin.find_by_role_module_and_role_id(p.last,@role.id) %>
+
+
+          <% if r.present?  %>
+
+            <% if(r.role_read?) %>
+
+              read <%= check_box_tag "#{p.last}read","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_read","1" %>
+
+            <% else %>
+
+              read <%= check_box_tag "#{p.last}read" %>
+
+              <%= hidden_field_tag "#{p.last}_read" %>
+            <% end %>
+
+          <% else %>
+
+            <% if(@role.title == "superuser") %>
+
+
+              read <%= check_box_tag "#{p.last}read","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_read","1" %>
+
+
+            <% else %>
+
+              read <%= check_box_tag "#{p.last}read" %>
+
+              <%= hidden_field_tag "#{p.last}_read" %>
+            <% end %>
+          <% end %>
+
+          <% if r.present? %>
+            <% if r.role_create? %>
+              create <%= check_box_tag "#{p.last}create","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_create","1" %>
+            <% else %>
+              create <%= check_box_tag "#{p.last}create" %>
+
+              <%= hidden_field_tag "#{p.last}_create" %>
+            <% end %>
+          <% else %>
+            <% if(@role.title == "superuser") %>
+              create <%= check_box_tag "#{p.last}create","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_create","1" %>
+            <% else %>
+              create <%= check_box_tag "#{p.last}create" %>
+
+              <%= hidden_field_tag "#{p.last}_create" %>
+            <% end %>
+          <% end %>
+
+          <% if r.present? %>
+            <% if r.role_update? %>
+              update <%= check_box_tag "#{p.last}update" , "1",:checked => "1" %>
+
+              <%= hidden_field_tag "#{p.last}_update","1" %>
+            <% else %>
+              update <%= check_box_tag "#{p.last}update" %>
+
+              <%= hidden_field_tag "#{p.last}_update" %>
+            <% end %>
+          <% else %>
+
+            <% if(@role.title == "superuser") %>
+
+              update <%= check_box_tag "#{p.last}update" , "1",:checked => "1" %>
+
+              <%= hidden_field_tag "#{p.last}_update","1" %>
+            <% else %>
+              update <%= check_box_tag "#{p.last}update" %>
+
+              <%= hidden_field_tag "#{p.last}_update" %>
+            <% end %>
+
+          <% end %>
+
+
+          <% if r.present? %>
+            <% if r.role_destroy? %>
+              delete <%= check_box_tag "#{p.last}destroy","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_destroy","1" %>
+
+            <% else %>
+              delete <%= check_box_tag "#{p.last}destroy" %>
+
+              <%= hidden_field_tag "#{p.last}_destroy" %>
+            <% end %>
+          <% else %>
+
+            <% if(@role.title == "superuser") %>
+              delete <%= check_box_tag "#{p.last}destroy","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_destroy","1" %>
+            <% else %>
+
+              delete <%= check_box_tag "#{p.last}destroy" %>
+
+              <%= hidden_field_tag "#{p.last}_destroy" %>
+
+            <% end %>
+          <% end %>
+
+          <% if r.present? %>
+            <% if r.role_manage? %>
+
+              All <%= check_box_tag "#{p.last}all","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_all","1" %>
+            <% else %>
+              All <%= check_box_tag "#{p.last}all" %>
+
+              <%= hidden_field_tag "#{p.last}_all" %>
+            <% end %>
+
+          <% else %>
+
+            <% if(@role.title == "superuser") %>
+              All <%= check_box_tag "#{p.last}all","1",:checked => "checked" %>
+
+              <%= hidden_field_tag "#{p.last}_all","1" %>
+            <% else %>
+
+              All <%= check_box_tag "#{p.last}all" %>
+
+              <%= hidden_field_tag "#{p.last}_all" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+
+      <% i = i+1  %>
+
+    <% end %>
+
+  </div>
+  <div style="clear: both"></div>
+  <div class="form-actions">
+
+    <div class="form-actions-left">
+
+      <%= f.submit "Save",:class => "button"  %>
+
+      <%= link_to "Cancel",roles_path,:id => "cancel",:class => "close-dialog button" %>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+<!-- End of form -->
+

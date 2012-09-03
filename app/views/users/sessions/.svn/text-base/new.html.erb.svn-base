@@ -1,0 +1,77 @@
+<!--
+
+        @FileName:                                          new.html.erb
+
+	@Company Name and Copyright information:            Mindfire Solutions Pvt. Ltd.
+
+	@Creator name and date:                             Indranil Mukherjee 04/06/2012
+
+	@Description of the file contents:                  Sign in page
+
+
+-->
+<% content_for :head do %>
+<%= javascript_include_tag "application","authentication_global","validate_login" %>
+<%= stylesheet_link_tag "authentication_global",:media => "all" %>
+
+<% end %>
+<p class="notice"></p>
+<div class="new-session" >
+  
+  <h2><%=  t(:sign_in,:default => "Please Sign in") %></h2>
+  
+  <div id="logincontainer" style="margin-top: 10px;">
+    
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+      <div class="field session-username clearfix"><%= f.label :email %><br />
+
+        <%= f.email_field :email %>
+        
+      </div>
+
+      <div class="field session-username clearfix"><%= f.label :password %><br />
+
+        <%= f.password_field :password %>
+
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+    
+    <div style="width: 100%;">
+
+    <div style="float: left;width: 12%;margin-top:20px;" >
+      <div style="float: left"><%= f.check_box :remember_me %></div>
+    <div style="float: right;margin-top: -20px;"><%= f.label :remember_me %></div>
+    <div style="clear: both"></div>
+    </div>
+
+    <div style="float: right; font-weight: normal;text-decoration: none"><%= link_to "Forgot your password?", new_password_path(resource_name) ,:style => "margin-right: 5px;" %></div>
+
+    <div style="clear: both"></div>
+      
+    </div>
+    
+      <% end -%>
+
+    <div class="form-actions">
+
+        <div class="form-actions-left"><%= f.submit "Sign in" ,:class => "button"%><%= image_tag "/assets/ajax-loader.gif",:id => "login_loader",:style => "display:none;padding-left:10px;"  %>
+
+        </div>
+
+        <div class="form-actions-right">
+          <% if User.all.empty? %>
+          <%= link_to "First User" , "/mcms/first_user"  %>
+          <% end %>
+        </div>
+
+      </div>
+    
+    <% end %>
+    
+  </div>
+
+
+  
+</div>

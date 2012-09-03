@@ -1,0 +1,127 @@
+<!--
+
+        @File Name                            :new.html.erb
+
+	@Company Name                         :Mindfire Solutions Pvt. Ltd.
+
+	@Creator Name                         :Indranil Mukherjee
+
+	@Date Created                         :2012-06-04
+
+        @Date Modified                        :2012-06-14
+
+        @Last Modification Details            :Making it as mcms project standard
+
+        @Purpose                              :A new user page
+
+-->
+
+<% content_for :head do %>
+
+  <%= javascript_include_tag "application","authentication_global" %>
+  <%= stylesheet_link_tag "authentication_global",:media => "all" %>
+
+<% end %>
+
+<!-- This line of code is responsible for javascript to be loaded for this particular page -->
+<% content_for :head do %>
+
+  <%= javascript_include_tag "application","authentication_global" %>
+  <%= stylesheet_link_tag "authentication_global",:media => "all" %>
+  <%= render(:partial => "role.js",:locals => {:all_roles => @all_roles}) %>
+
+<% end %>
+
+
+
+<div id="main-content" class="new-user-form" style="margin-top: 0px;padding-top: 21px; ">
+
+  <!--
+
+    The following form is responsible
+    for creating a new user with email and password.
+
+  -->
+  <%= form_for(:user, :url => "/mcms/users") do |f| %>
+
+    <%= devise_error_messages! %>
+
+    <div class="field">
+
+      <%= f.label :email %><br />
+
+      <%= f.email_field :email %></div>
+
+  <div class="field">
+
+      <%= f.label :first_name %><br />
+
+      <%= f.text_field :first_name %></div>
+
+
+
+  <div class="field">
+
+      <%= f.label :last_name %><br />
+
+      <%= f.text_field :last_name %></div>
+  
+  
+    <div class="field">
+
+      <%= f.label :password %><br />
+
+      <%= f.password_field :password %></div>
+
+    <div class="field"><%= f.label :password_confirmation %><br />
+
+      <%= f.password_field :password_confirmation %></div>
+
+
+    <div class="field">
+
+      <span class="label-with-help">
+
+        <label for="user-plugin-access" class="title-label">Define Roles</label>
+
+      </span>
+
+      <ul class="checkboxes" id="plugins">
+
+        <%  @all_roles.each do |role| %>
+
+          <li>
+
+            <%= check_box_tag "#{role.id}" %>
+
+            <%= hidden_field_tag "#{role.id}_value" %>
+
+            <label for="plugins-refinery-files" class="stripped"><%= role.title %></label>
+
+          </li>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+
+    <div class="form-actions" >
+
+      <div class="form-actions-left" >
+
+        <%= f.submit "Save",:class => "button"  %>
+
+        <%= link_to "Cancel",mcms_users_path,:id => "cancel",:class => "close-dialog button" %>
+
+      </div>
+
+    </div>
+
+
+  <% end %>
+
+
+</div>
+
+<!-- End of New User creation -->
