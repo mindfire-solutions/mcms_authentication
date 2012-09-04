@@ -1,15 +1,15 @@
 10
 
 dir
-24145
+24636
 https://192.168.10.251/svn/SVNHOME/mcms/trunk/mcms_authentication
 https://192.168.10.251/svn/SVNHOME
 
 
 
-2012-08-17T12:46:47.997483Z
-21938
-indranilm
+2012-09-04T07:55:00.492589Z
+24631
+vikram.mishra
 
 
 
@@ -26,6 +26,40 @@ indranilm
 
 1c585b59-8543-f64d-be5d-59e32bce3eb1
 
+mcms_authentication-1.0.0.gem
+file
+
+
+
+
+2012-09-04T08:45:57.865594Z
+b504006b9c89250be9093b83623e684c
+2012-09-04T07:55:00.492589Z
+24631
+vikram.mishra
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+47104
+
 app
 dir
 
@@ -35,11 +69,11 @@ file
 
 
 
-2012-08-31T05:18:36.142169Z
-3bbf5f42da6a8394f18b68d7493a8d26
-2012-08-17T12:43:42.001068Z
-21937
-indranilm
+2012-09-04T08:45:57.865594Z
+f11fd00082269be68dbe119a5fc605f1
+2012-09-04T07:55:00.492589Z
+24631
+vikram.mishra
 
 
 
@@ -61,7 +95,7 @@ indranilm
 
 
 
-830
+822
 
 Rakefile
 file
