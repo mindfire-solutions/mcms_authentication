@@ -1,9 +1,7 @@
 mcms_authentication
 ===================
 
-
-
-This is most flexible authentication solution
+This is most flexible authentication solution capable to identify your modules
 
 installation
 ===================
